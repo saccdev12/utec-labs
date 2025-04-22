@@ -2,9 +2,9 @@
 
 int main() {
 	int valor, digito;
-	printf("Ingrese un número de 4 dígitos: \n");
+	printf("Ingrese un nï¿½mero de 4 dï¿½gitos: \n");
 	scanf("%d", &valor);
-	printf("Ingrese un número de 1 dígito \n");
+	printf("Ingrese un nï¿½mero de 1 dï¿½gito \n");
 	scanf("%d", &digito);
 	int c1, c2, c3, c4;
 	c4= valor%10;
@@ -34,7 +34,7 @@ int main() {
 			printf(" ");
 		}
 	}else{
-		printf("El dígito: %d no aparece en: %d", digito, valor);
+		printf("El dÃ­gito: %d no aparece en: %d", digito, valor);
 	}
 	return 0;
 }
