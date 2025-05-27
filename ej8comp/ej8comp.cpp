@@ -1,4 +1,4 @@
-#include "ej5comp.h"
+#include "ej8comppp.h"
 #include <iostream>
 
 void inicializarMatriz(int matriz[N][N]){
