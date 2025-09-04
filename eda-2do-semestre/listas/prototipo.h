@@ -59,4 +59,14 @@ lista dirNodo(lista l, int v);
 
 //elimino 1er nodo lista
 lista eliminoPrincipio(lista l);
+
+//elimino ultimo nodo lista
+//Precondicion: lista existe
+lista eliminoUltimo(lista l);
+
+//elimino nodo con valor
+//Precondicion: lista existe
+lista eliminoNodo(lista l, int v);
+
+
 #endif

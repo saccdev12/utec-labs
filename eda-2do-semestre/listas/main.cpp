@@ -1,6 +1,8 @@
 #include<iostream>
 using namespace std;
 #include "prototipo.h"
+
+
 int main (int argc, char *argv[]) {
 	lista cabezal;
 	cabezal = creo_vacia();
@@ -83,7 +85,20 @@ int main (int argc, char *argv[]) {
 	cout << endl;
 	imprimoRecursivo(cabezal);
 	cout << endl;
-	imprimoRecursivo(cabezal);
+	imprimoIterativo(cabezal);
+	cabezal = insertoPrincipio(cabezal, 10);
+	cabezal = insertoPrincipio(cabezal, 100);
+	cabezal = insertoPrincipio(cabezal,1000);
+	cout << "Inserto el 10, 100 y 1000"<< endl;
+	imprimoIterativo(cabezal);
+	cout << "Borror el ultimo "<<endl;
+	cabezal = eliminoUltimo(cabezal);
+	cout << endl;
+	cout << "Muestro lista"<<endl;
+	imprimoIterativo(cabezal);
+	cabezal = eliminoUltimo(cabezal);
+	cabezal = eliminoNodo(cabezal,100);
+	imprimoIterativo(cabezal);
 	
 	return 0;
 }

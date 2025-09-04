@@ -1,12 +1,15 @@
 #include<iostream>
 using namespace std;
 #include "definicion.h"
-// esta funci�n devuelve la lista vac�a.
+
+
+
+// esta funcion devuelve la lista vac�a.
 lista creo_vacia(){
 	return NULL;
 }
 
-//devuelve true si la lista es vac�a y false si no lo es.
+//devuelve true si la lista es vacia y false si no lo es.
 bool es_vacia(lista l){
 	if (l == NULL)
 		return true;
@@ -50,6 +53,7 @@ void imprimoIterativo(lista l){
 		cout << l->valor << " - ";
 		l=l->sig;
 	}
+	cout << "FIN"<<endl;
 }
 
 	
@@ -164,6 +168,7 @@ lista dirNodo(lista l, int v){
 	}
 	return l;
 }
+
 //elimino el primer nodo de la lista
 lista eliminoPrincipio(lista l){
 	if(es_vacia(l)){
@@ -173,6 +178,49 @@ lista eliminoPrincipio(lista l){
 	lista aborrar;
 	aborrar = l;
 	l = l->sig;
+	delete aborrar;
+	return l;
+}
+
+	
+//elimino ultimo nodo lista
+//Precondicion: lista existe
+lista eliminoUltimo(lista l){
+	lista aborrar;
+	aborrar = l;
+	if (es_vacia(l->sig)){
+		delete l->sig;
+		return NULL;
+	}
+	lista anterior;
+	while (!es_vacia(aborrar->sig)){
+		anterior = aborrar;
+		aborrar = aborrar->sig;
+	}
+	delete aborrar;
+	anterior->sig = NULL;
+	return l;
+}
+	
+//elimino nodo con valor
+//Precondicion: lista existe
+lista eliminoNodo(lista l, int v){
+	if(lugar(l,v)== 0){
+		return l;
+	}
+	if(lugar(l,v)== 1){
+		return eliminoPrincipio(l);
+	}
+	if(lugar(l,v)==cantidadNodos(l)){
+		return eliminoUltimo(l);
+	}
+	lista aborrar=l;
+	lista anterior=NULL;
+	while(aborrar->valor != v){
+		anterior = aborrar;
+		aborrar = aborrar->sig;
+	}
+	anterior->sig = aborrar->sig;
 	delete aborrar;
 	return l;
 }
