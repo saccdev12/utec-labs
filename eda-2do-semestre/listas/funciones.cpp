@@ -279,3 +279,30 @@ lista intercalarLista(lista l1, lista l2){
 	}
 	return l3;
 }
+
+
+//funcion que te dice si 2 listas son iguales
+bool sonIguales(lista l1, lista l2){
+  if(cantidadNodos(l1)!=cantidadNodos(l2)){
+	return false;
+  }
+  while(!es_vacia(l1)&&!es_vacia(l2)){
+	if(l1 -> valor != l2 -> valor){
+		return false;
+	}
+	l1 = l1 -> sig;
+	l2 = l2 -> sig;
+  }
+  return true;
+}
+
+
+//funcion que ordena una lista
+lista ordenoLista(lista l){
+  
+}
+
+
+
+
+	

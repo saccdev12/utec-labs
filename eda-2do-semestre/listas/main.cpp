@@ -117,5 +117,15 @@ int main (int argc, char *argv[]) {
 	cabezal = intercalarLista(cabezal,cabezal2);
 	cout << "Lista intercalada - ";
 	imprimoIterativo(cabezal);
+
+    bool iguales;
+	iguales = sonIguales(cabezal, cabezal2);
+
+	if(iguales==true){
+		cout << "Si";
+	}else{
+		cout << "bolivia no va al mundial";
+	}
+
 	return 0;
 }
