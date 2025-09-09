@@ -224,3 +224,58 @@ lista eliminoNodo(lista l, int v){
 	delete aborrar;
 	return l;
 }
+
+
+//funcion que une 2 listas
+lista unirLista(lista l1, lista l2){
+
+    lista aux = l1;
+
+	if(es_vacia(l1)){
+		return l2;
+	}
+	if(es_vacia(l2)){
+		return l1;
+	}
+
+	while(!es_vacia(l1->sig)){
+		l1 = l1->sig;
+	}
+	l1->sig = l2;
+	return aux;
+}
+
+
+
+//intercarlar listas en una nueva lista
+//Precondicion: las listas no estan vacias y estan ordenadas.
+lista intercalarLista(lista l1, lista l2){
+	lista l3 = NULL;
+	while (!es_vacia(l1) && !es_vacia(l2)){
+		if (l1->valor > l2->valor){
+			l3 = insertoFinal(l3,l2->valor);
+			l2 = l2->sig;
+		}else{
+			if(l1->valor < l2->valor){
+				l3 = insertoFinal(l3,l1->valor);
+				l1 = l1->sig;
+			}else{
+				l3 = insertoFinal(l3,l2->valor);
+				l2 = l2->sig;
+				l1 = l1->sig;
+			}
+		}	
+	}
+	if (es_vacia(l1)){
+		while (!es_vacia(l2)){
+			l3 = insertoFinal(l3,l2->valor);
+			l2 = l2->sig;
+		}
+	}else{
+		while (!es_vacia(l1)){
+			l3 = insertoFinal(l3,l1->valor);
+			l1 = l1->sig;
+		}
+	}
+	return l3;
+}

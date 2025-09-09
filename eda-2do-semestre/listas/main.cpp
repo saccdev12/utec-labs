@@ -6,7 +6,7 @@ using namespace std;
 int main (int argc, char *argv[]) {
 	lista cabezal;
 	cabezal = creo_vacia();
-	
+	/*
 	if (es_vacia(cabezal)){
 		cout << "La lista esta vacia"<<endl;
 	}else{	
@@ -85,10 +85,11 @@ int main (int argc, char *argv[]) {
 	cout << endl;
 	imprimoRecursivo(cabezal);
 	cout << endl;
-	imprimoIterativo(cabezal);
+	imprimoIterativo(cabezal);*/
+	cabezal = insertoPrincipio(cabezal, 50);
+	cabezal = insertoPrincipio(cabezal, 20);
 	cabezal = insertoPrincipio(cabezal, 10);
-	cabezal = insertoPrincipio(cabezal, 100);
-	cabezal = insertoPrincipio(cabezal,1000);
+	/*cabezal = insertoPrincipio(cabezal,1000);
 	cout << "Inserto el 10, 100 y 1000"<< endl;
 	imprimoIterativo(cabezal);
 	cout << "Borror el ultimo "<<endl;
@@ -97,8 +98,24 @@ int main (int argc, char *argv[]) {
 	cout << "Muestro lista"<<endl;
 	imprimoIterativo(cabezal);
 	cabezal = eliminoUltimo(cabezal);
-	cabezal = eliminoNodo(cabezal,100);
+	cabezal = eliminoNodo(cabezal,100);*/
+//	cout << "Unir"<<endl;
+//	imprimoIterativo(cabezal);
+//	cout << endl;
+	lista cabezal2=NULL;
+	//cabezal = unirLista(cabezal,cabezal2);
+	cout << "Lista 1 - ";
 	imprimoIterativo(cabezal);
-	
+	cabezal2 = insertoPrincipio(cabezal2, 50);
+	cabezal2 = insertoPrincipio(cabezal2, 14);
+	cabezal2 = insertoPrincipio(cabezal2, 12);
+	cout << "Lista 2 - ";
+	imprimoIterativo(cabezal2);
+	cout << endl;
+	//cabezal = unirLista(cabezal,cabezal2);
+	//imprimoIterativo(cabezal);
+	cabezal = intercalarLista(cabezal,cabezal2);
+	cout << "Lista intercalada - ";
+	imprimoIterativo(cabezal);
 	return 0;
 }

@@ -1,10 +1,11 @@
 #ifndef PROTOTIPO_H
 #define PROTOTIPO_H
 #include "definicion.h"
-// esta funci�n devuelve la lista vac�a.
+
+// esta función devuelve la lista vacía.
 lista creo_vacia();
 	
-//devuelve true si la lista es vac�a y false si no lo es.
+//devuelve true si la lista es vacía y false si no lo es.
 bool es_vacia(lista l); 
 	
 //Funcion que inserta un nuevo nodo al principio de la lista con el valor x.
@@ -14,8 +15,8 @@ lista insertoPrincipio(lista l, int x);
 void insertoPrincipio2(lista &l, int x);
 
 
-// devuelve el valor del elemento en la primer posici�n de la lista.
-//Precondici�n: se puede utilizar esta operaci�n solo si l no es vac�a.
+// devuelve el valor del elemento en la primer posición de la lista.
+//Precondición: se puede utilizar esta operación solo si l no es vacía.
 int primero(lista l);
 
 //imprime los elementos de la lista	recursivo
@@ -67,6 +68,23 @@ lista eliminoUltimo(lista l);
 //elimino nodo con valor
 //Precondicion: lista existe
 lista eliminoNodo(lista l, int v);
+
+//Une 2 listas. La listas pueden estar vacías.
+lista unirLista(lista l1, lista l2);
+
+//devuelvo valor del nodo
+int valorNodo(lista l);
+
+
+//intercarlar listas
+//Precondicion: las listas no estan vacias y estan ordenadas.
+lista intercalarLista(lista l1, lista l2);
+
+//son iguales
+bool sonIguales(lista l1, lista l2);
+
+//ordeno lista
+lista ordenoLista(lista l);
 
 
 #endif
