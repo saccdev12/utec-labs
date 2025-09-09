@@ -86,9 +86,9 @@ int main (int argc, char *argv[]) {
 	imprimoRecursivo(cabezal);
 	cout << endl;
 	imprimoIterativo(cabezal);*/
-	cabezal = insertoPrincipio(cabezal, 50);
-	cabezal = insertoPrincipio(cabezal, 20);
+	cabezal = insertoPrincipio(cabezal, 15);
 	cabezal = insertoPrincipio(cabezal, 10);
+	cabezal = insertoPrincipio(cabezal, 20);
 	/*cabezal = insertoPrincipio(cabezal,1000);
 	cout << "Inserto el 10, 100 y 1000"<< endl;
 	imprimoIterativo(cabezal);
@@ -106,26 +106,30 @@ int main (int argc, char *argv[]) {
 	//cabezal = unirLista(cabezal,cabezal2);
 	cout << "Lista 1 - ";
 	imprimoIterativo(cabezal);
-	cabezal2 = insertoPrincipio(cabezal2, 50);
-	cabezal2 = insertoPrincipio(cabezal2, 14);
-	cabezal2 = insertoPrincipio(cabezal2, 12);
-	cout << "Lista 2 - ";
-	imprimoIterativo(cabezal2);
-	cout << endl;
+	//cabezal2 = insertoPrincipio(cabezal2, 50);
+	//cabezal2 = insertoPrincipio(cabezal2, 20);
+	//cabezal2 = insertoPrincipio(cabezal2, 10);
+	//cabezal2 = insertoPrincipio(cabezal2, 15);
+	//cabezal2 = insertoPrincipio(cabezal2, 5);
+	
+	//cout << "Lista 2 - ";
+	//imprimoIterativo(cabezal2);
+	//cout << endl;
 	//cabezal = unirLista(cabezal,cabezal2);
 	//imprimoIterativo(cabezal);
-	cabezal = intercalarLista(cabezal,cabezal2);
+	/*cabezal = intercalarLista(cabezal,cabezal2);
 	cout << "Lista intercalada - ";
-	imprimoIterativo(cabezal);
-
-    bool iguales;
-	iguales = sonIguales(cabezal, cabezal2);
-
-	if(iguales==true){
-		cout << "Si";
+	imprimoIterativo(cabezal);*/
+	/*if (sonIguales(cabezal,cabezal2)){
+		cout << "Las listas son iguales"<<endl;
 	}else{
-		cout << "bolivia no va al mundial";
+		cout << "Las listas NO son iguales"<<endl;
 	}
+	*/
+	
+	ordenoLista(cabezal);
+	cout << "Lista Ordenada ";
+	imprimoIterativo(cabezal);
 
 	return 0;
 }

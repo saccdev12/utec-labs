@@ -3,13 +3,12 @@ using namespace std;
 #include "definicion.h"
 
 
-
-// esta funcion devuelve la lista vac�a.
+// esta función devuelve la lista vacía.
 lista creo_vacia(){
 	return NULL;
 }
 
-//devuelve true si la lista es vacia y false si no lo es.
+//devuelve true si la lista es vacía y false si no lo es.
 bool es_vacia(lista l){
 	if (l == NULL)
 		return true;
@@ -34,8 +33,8 @@ void insertoPrincipio2(lista &l, int x){
 	l = nuevoNodo;
 		
 }
-// devuelve el valor del elemento en la primer posici�n de la lista.
-//Precondici�n: se puede utilizar esta operaci�n solo si l no es vac�a.
+// devuelve el valor del elemento en la primer posición de la lista.
+//Precondición: se puede utilizar esta operación solo si l no es vacía.
 int primero(lista l){
 	return l->valor;
 }
@@ -108,6 +107,9 @@ int lugar(lista l, int v){
 lista insertoFinal(lista l, int v){
 	lista aux;
 	aux = l;
+	if(es_vacia(l)){
+		return insertoPrincipio(l,v);
+	}
 	while (!es_vacia(l->sig)){
 		l=l->sig;
 	}
@@ -168,7 +170,6 @@ lista dirNodo(lista l, int v){
 	}
 	return l;
 }
-
 //elimino el primer nodo de la lista
 lista eliminoPrincipio(lista l){
 	if(es_vacia(l)){
@@ -222,30 +223,26 @@ lista eliminoNodo(lista l, int v){
 	}
 	anterior->sig = aborrar->sig;
 	delete aborrar;
-	return l;
+	return l;	
 }
 
-
-//funcion que une 2 listas
-lista unirLista(lista l1, lista l2){
-
-    lista aux = l1;
-
-	if(es_vacia(l1)){
+//Une 2 listas. La listas pueden estar vacías.
+lista unirLista(lista l1, lista l2){	
+	lista aux = l1;
+	if (es_vacia(l1)){
 		return l2;
 	}
-	if(es_vacia(l2)){
+	if (es_vacia(l2)){
 		return l1;
 	}
-
-	while(!es_vacia(l1->sig)){
-		l1 = l1->sig;
+	while (!es_vacia(aux->sig)){
+		aux = aux->sig;
 	}
-	l1->sig = l2;
-	return aux;
-}
-
-
+	aux->sig = l2;
+	return l1;
+	
+};
+	
 
 //intercarlar listas en una nueva lista
 //Precondicion: las listas no estan vacias y estan ordenadas.
@@ -279,30 +276,44 @@ lista intercalarLista(lista l1, lista l2){
 	}
 	return l3;
 }
+	
 
-
-//funcion que te dice si 2 listas son iguales
+//son iguales
 bool sonIguales(lista l1, lista l2){
-  if(cantidadNodos(l1)!=cantidadNodos(l2)){
-	return false;
-  }
-  while(!es_vacia(l1)&&!es_vacia(l2)){
-	if(l1 -> valor != l2 -> valor){
+	if (cantidadNodos(l1)!=cantidadNodos(l2)){
 		return false;
 	}
-	l1 = l1 -> sig;
-	l2 = l2 -> sig;
-  }
-  return true;
+	while (!es_vacia(l1)&&!es_vacia(l2)){
+		if (l1->valor != l2->valor){
+			return false;
+		}
+		l1=l1->sig;
+		l2=l2->sig;
+	}
+	return true;
 }
+	
 
-
-//funcion que ordena una lista
-lista ordenoLista(lista l){
-  
+//ordeno lista
+//Precondicion Lista no es vacia
+void ordenoLista(lista l){
+	int intercambio;
+	lista anterior = NULL;
+	lista siguiente = NULL;
+	for (int i=1; i < cantidadNodos(l); i++){
+		anterior = l;
+		siguiente = l->sig;
+		while (!es_vacia(siguiente)){
+			if (anterior->valor > siguiente->valor){
+				intercambio = anterior->valor;
+				anterior->valor = siguiente->valor;
+				siguiente->valor = intercambio;
+			}
+			anterior = siguiente;
+			siguiente = siguiente->sig;
+		}
+	}
 }
-
-
 
 
 	

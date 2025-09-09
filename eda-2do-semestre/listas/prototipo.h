@@ -2,6 +2,7 @@
 #define PROTOTIPO_H
 #include "definicion.h"
 
+
 // esta función devuelve la lista vacía.
 lista creo_vacia();
 	
@@ -84,7 +85,7 @@ lista intercalarLista(lista l1, lista l2);
 bool sonIguales(lista l1, lista l2);
 
 //ordeno lista
-lista ordenoLista(lista l);
-
+//Precondicion Lista no es vacia
+void ordenoLista(lista l);
 
 #endif
