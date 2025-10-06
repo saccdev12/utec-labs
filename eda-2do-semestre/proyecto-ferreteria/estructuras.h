@@ -2,6 +2,8 @@
 #define ESTRUCTURAS_H
 
 #define T 30
+#define P 4
+
 typedef char *cadena;
 
 typedef struct _nodoStock{

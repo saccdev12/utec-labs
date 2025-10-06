@@ -1,4 +1,5 @@
 #include<iostream>
+#include<stdio_ext.h>
 using namespace std;
 #include "estructuras.h"
 #include "prototipos.h"
@@ -6,14 +7,20 @@ using namespace std;
 int main (int argc, char *argv[]) {
 	producto listaProducto = NULL;
 	cadena comando = new char[100];
-	cout << ">";
-	cin.getline(comando,100);
+	cadena parametro[P]; //defino arreglo con 4 punteros a char
+		
+	while (strlen(comando)==0){
+		cout << ">";
+		cin.getline(comando,100);
+	}
+	
 	char delim[] = "( \" , \" )"; //defino los limitadores en su respectivo orden
-	char *parametro[T]; //defino arreglo con 4 punteros a char
+	
 	int contador = 0;
 	parametro[contador] = strtok(comando,delim);
 	contador++;
 	parametro[contador] = strtok(NULL,delim);
+	
 	while (parametro[contador]!=NULL){
 		contador++;
 		parametro[contador] = strtok(NULL,delim);
@@ -61,17 +68,23 @@ int main (int argc, char *argv[]) {
 		default:
 			muestroRetorno(ERROR);
 		}
-		cout << ">";
-		cin.getline(comando,100);
+		__fpurge(stdin);
+		strcpy(comando,"");
+		
+		while (strlen(comando)==0){
+			cout << ">";
+			cin.getline(comando,100);
+		}
 		int contador = 0;
 		parametro[contador] = strtok(comando,delim);
 		contador++;
 		parametro[contador] = strtok(NULL,delim);
+		
 		while (parametro[contador]!=NULL){
 			contador++;
 			parametro[contador] = strtok(NULL,delim);
 		}
-
 	}
 	return 0;
 }
+
