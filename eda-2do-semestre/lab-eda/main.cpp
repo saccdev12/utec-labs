@@ -1,174 +1,130 @@
-#include <iostream>
-#include <cstring>
-#include "lab-proto.h"
-
+#include<iostream>
+#include<stdio_ext.h>
+#include <string.h>
 using namespace std;
 
-void mostrarMenu();
-void procesarComando(Archivo* &archivoActual);
+#include"prototipos.h"
+#include "estructuras.h"
 
-int main() {
-    Archivo* archivoActual = nullptr;
-    
-    cout << "=== MANEJADOR DE VERSIONES ===" << endl;
-    cout << "Sistema de control de versiones para archivos de texto" << endl << endl;
-    
-    while (true) {
-        mostrarMenu();
-        procesarComando(archivoActual);
-    }
-    
-    return 0;
-}
-
-void mostrarMenu() {
-    cout << "\nCOMANDOS DISPONIBLES:" << endl;
-    cout << "1. crear <nombre> - Crear nuevo archivo" << endl;
-    cout << "2. borrar - Borrar archivo actual" << endl;
-    cout << "3. version <id> - Crear nueva versión" << endl;
-    cout << "4. borrar_version <id> - Borrar versión" << endl;
-    cout << "5. mostrar_versiones - Mostrar todas las versiones" << endl;
-    cout << "6. insertar <version> <linea> <texto> - Insertar línea" << endl;
-    cout << "7. borrar_linea <version> <nro_linea> - Borrar línea" << endl;
-    cout << "8. mostrar_texto <version> - Mostrar texto de versión" << endl;
-    cout << "9. mostrar_cambios <version> - Mostrar cambios de versión" << endl;
-    cout << "10. iguales <version1> <version2> - Comparar versiones" << endl;
-    cout << "11. salir - Salir del programa" << endl;
-    cout << "\nIngrese comando: ";
-}
-
-void procesarComando(Archivo* &archivoActual) {
-    char comando[100];
-    cin >> comando;
-    
-    if (strcmp(comando, "crear") == 0) {
-        char nombre[100];
-        cin >> nombre;
-        
-        if (archivoActual) {
-            cout << "ERROR: Ya existe un archivo abierto" << endl;
-        } else {
-            archivoActual = CrearArchivo(nombre);
-            cout << "Archivo '" << nombre << "' creado exitosamente" << endl;
-        }
-    }
-    else if (strcmp(comando, "borrar") == 0) {
-        if (!archivoActual) {
-            cout << "ERROR: No hay archivo abierto" << endl;
-        } else {
-            BorrarArchivo(archivoActual);
-            cout << "Archivo borrado exitosamente" << endl;
-        }
-    }
-    else if (strcmp(comando, "version") == 0) {
-        char version[100];
-        cin >> version;
-        
-        if (!archivoActual) {
-            cout << "ERROR: No hay archivo abierto" << endl;
-        } else {
-            TipoRet resultado = CrearVersion(archivoActual, version);
-            if (resultado == OK) {
-                cout << "Versión '" << version << "' creada exitosamente" << endl;
-            }
-        }
-    }
-    else if (strcmp(comando, "borrar_version") == 0) {
-        char version[100];
-        cin >> version;
-        
-        if (!archivoActual) {
-            cout << "ERROR: No hay archivo abierto" << endl;
-        } else {
-            TipoRet resultado = BorrarVersion(archivoActual, version);
-            if (resultado == OK) {
-                cout << "Versión '" << version << "' borrada exitosamente" << endl;
-            }
-        }
-    }
-    else if (strcmp(comando, "mostrar_versiones") == 0) {
-        if (!archivoActual) {
-            cout << "ERROR: No hay archivo abierto" << endl;
-        } else {
-            MostrarVersiones(archivoActual);
-        }
-    }
-    else if (strcmp(comando, "insertar") == 0) {
-        char version[100];
-        unsigned int nroLinea;
-        char linea[1000];
-        
-        cin >> version >> nroLinea;
-        cin.ignore(); // Ignorar espacio
-        cin.getline(linea, 1000);
-        
-        if (!archivoActual) {
-            cout << "ERROR: No hay archivo abierto" << endl;
-        } else {
-            TipoRet resultado = InsertarLinea(archivoActual, version, linea, nroLinea);
-            if (resultado == OK) {
-                cout << "Línea insertada exitosamente" << endl;
-            }
-        }
-    }
-    else if (strcmp(comando, "borrar_linea") == 0) {
-        char version[100];
-        unsigned int nroLinea;
-        
-        cin >> version >> nroLinea;
-        
-        if (!archivoActual) {
-            cout << "ERROR: No hay archivo abierto" << endl;
-        } else {
-            TipoRet resultado = BorrarLinea(archivoActual, version, nroLinea);
-            if (resultado == OK) {
-                cout << "Línea borrada exitosamente" << endl;
-            }
-        }
-    }
-    else if (strcmp(comando, "mostrar_texto") == 0) {
-        char version[100];
-        cin >> version;
-        
-        if (!archivoActual) {
-            cout << "ERROR: No hay archivo abierto" << endl;
-        } else {
-            MostrarTexto(archivoActual, version);
-        }
-    }
-    else if (strcmp(comando, "mostrar_cambios") == 0) {
-        char version[100];
-        cin >> version;
-        
-        if (!archivoActual) {
-            cout << "ERROR: No hay archivo abierto" << endl;
-        } else {
-            MostrarCambios(archivoActual, version);
-        }
-    }
-    else if (strcmp(comando, "iguales") == 0) {
-        char version1[100], version2[100];
-        cin >> version1 >> version2;
-        
-        if (!archivoActual) {
-            cout << "ERROR: No hay archivo abierto" << endl;
-        } else {
-            bool iguales;
-            TipoRet resultado = Iguales(archivoActual, version1, version2, iguales);
-            if (resultado == OK) {
-                cout << "Las versiones son " << (iguales ? "IGUALES" : "DIFERENTES") << endl;
-            }
-        }
-    }
-    else if (strcmp(comando, "salir") == 0) {
-        if (archivoActual) {
-            BorrarArchivo(archivoActual);
-        }
-        cout << "¡Hasta luego!" << endl;
-        exit(0);
-    }
-    else {
-        cout << "ERROR: Comando no reconocido" << endl;
-        cin.ignore(1000, '\n'); // Limpiar buffer
-    }
+int main (int argc, char *argv[]) {
+	Archivo a;
+	cadena name = new char[T];
+	strcpy(name,"c");
+	a = CrearArchivo(name);
+	cout<<a->nombre<<endl;
+	cadena comando = new char[100];
+	cadena parametro[P]; //defino arreglo con 4 punteros a char
+	__fpurge(stdin);
+	while (strlen(comando)==0){
+		cout << ">";
+		cin.getline(comando,100);
+	}
+	__fpurge(stdin);
+	char delim[] = "(\",\")"; //defino los limitadores en su respectivo orden
+	
+	int contador = 0;
+	parametro[contador] = strtok(comando,delim);
+	contador++;
+	parametro[contador] = strtok(NULL,delim);
+	while (parametro[contador]!=NULL){
+		contador++;
+		parametro[contador] = strtok(NULL,delim);
+	}
+	__fpurge(stdin);
+	opciones opcion;
+	__fpurge(stdin);
+	while(strcmp(parametro[0],"salir")!= 0){
+		__fpurge(stdin);
+		opcion = error;
+		__fpurge(stdin);
+		if (strcmp(parametro[0],"insertarLinea")==0){
+			opcion = insertarLinea;
+		}
+		if (strcmp(parametro[0],"borrarLinea")==0){
+			opcion = borrarLinea;
+		}
+		if (strcmp(parametro[0],"mostrarTexto")==0){
+			opcion = mostrarTexto;
+		}
+		if (strcmp(parametro[0],"crearVersion")==0){
+			opcion = crearVersion;
+		}
+		if (strcmp(parametro[0],"borrarVersion")==0){
+			opcion = borrarVersion;
+		}
+		if (strcmp(parametro[0],"mostrarVersiones")==0){
+			opcion = mostrarVersiones;
+		}
+		if (strcmp(parametro[0],"mostrarCambios")==0){
+			opcion = mostrarCambios;
+		}
+		if (strcmp(parametro[0],"versionIndependiente")==0){
+			opcion = versionIndependiente;
+		}
+		if (strcmp(parametro[0],"limpiar")==0){
+			opcion = limpiar;
+		}
+		if (strcmp(parametro[0],"ayuda")==0){
+			opcion = ayuda;
+		}
+		
+		
+		
+		switch (opcion){
+		case insertarLinea:
+			muestroRetorno(InsertarLinea(a,parametro[2],parametro[3],atoi(parametro[4])));
+			break;
+		case mostrarTexto:
+			muestroRetorno(MostrarTexto(a,parametro[2]));
+		    break;
+		case borrarLinea:
+			muestroRetorno(BorrarLinea(a,parametro[2],atoi(parametro[3])));
+			break;
+		case crearVersion:
+			muestroRetorno(CrearVersion(a,parametro[2]));
+			break;
+		case mostrarVersiones:
+			muestroRetorno(MostrarVersiones(a));
+			break;
+		case borrarVersion:
+			muestroRetorno(BorrarVersion(a,parametro[2]));
+			break;
+		case mostrarCambios:
+			muestroRetorno(MostrarCambios(a, parametro[2]));
+			break;
+		case versionIndependiente:
+			muestroRetorno(VersionIndependiente(a, parametro[2]));
+			break;
+//		case iguales:
+//			muestroRetorno(Iguales(a, parametro[2],parametro[3],))
+		case ayuda:
+			help();
+			break;
+		case limpiar:
+			system("clear");
+			break;
+		default:
+			muestroRetorno(ERROR);
+		}
+		__fpurge(stdin);
+		strcpy(comando,"");
+		
+		while (strlen(comando)==0){
+			cout << ">";
+			cin.getline(comando,100);
+		}
+		int contador = 0;
+		parametro[contador] = strtok(comando,delim);
+		contador++;
+		parametro[contador] = strtok(NULL,delim);
+		
+		while (parametro[contador]!=NULL){
+			contador++;
+			parametro[contador] = strtok(NULL,delim);
+		}
+		
+	}
+	muestroRetorno(BorrarArchivo(a));
+	
+	return 0;
 }
