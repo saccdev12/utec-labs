@@ -1,10 +1,10 @@
 #include<iostream>
 #include<stdio_ext.h>
-#include <string.h>
 using namespace std;
 
 #include"prototipos.h"
 #include "estructuras.h"
+#include "string.h"
 
 int main (int argc, char *argv[]) {
 	Archivo a;
@@ -33,33 +33,33 @@ int main (int argc, char *argv[]) {
 	__fpurge(stdin);
 	opciones opcion;
 	__fpurge(stdin);
-	while(strcmp(parametro[0],"salir")!= 0){
+	while(strcmp(parametro[0],"Salir")!= 0){
 		__fpurge(stdin);
 		opcion = error;
 		__fpurge(stdin);
-		if (strcmp(parametro[0],"insertarLinea")==0){
-			opcion = insertarLinea;
+		if (strcmp(parametro[0],"InsertarLinea")==0){
+			opcion = InsertarLinea;
 		}
-		if (strcmp(parametro[0],"borrarLinea")==0){
-			opcion = borrarLinea;
+		if (strcmp(parametro[0],"BorrarLinea")==0){
+			opcion = BorrarLinea;
 		}
-		if (strcmp(parametro[0],"mostrarTexto")==0){
-			opcion = mostrarTexto;
+		if (strcmp(parametro[0],"MostrarTexto")==0){
+			opcion = MostrarTexto;
 		}
-		if (strcmp(parametro[0],"crearVersion")==0){
-			opcion = crearVersion;
+		if (strcmp(parametro[0],"CrearVersion")==0){
+			opcion = CrearVersion;
 		}
-		if (strcmp(parametro[0],"borrarVersion")==0){
-			opcion = borrarVersion;
+		if (strcmp(parametro[0],"BorrarVersion")==0){
+			opcion = BorrarVersion;
 		}
-		if (strcmp(parametro[0],"mostrarVersiones")==0){
-			opcion = mostrarVersiones;
+		if (strcmp(parametro[0],"MostrarVersiones")==0){
+			opcion = MostrarVersiones;
 		}
-		if (strcmp(parametro[0],"mostrarCambios")==0){
-			opcion = mostrarCambios;
+		if (strcmp(parametro[0],"MostrarCambios")==0){
+			opcion = MostrarCambios;
 		}
-		if (strcmp(parametro[0],"versionIndependiente")==0){
-			opcion = versionIndependiente;
+		if (strcmp(parametro[0],"VersionIndependiente")==0){
+			opcion = VersionIndependiente;
 		}
 		if (strcmp(parametro[0],"limpiar")==0){
 			opcion = limpiar;
@@ -71,29 +71,29 @@ int main (int argc, char *argv[]) {
 		
 		
 		switch (opcion){
-		case insertarLinea:
-			muestroRetorno(InsertarLinea(a,parametro[2],parametro[3],atoi(parametro[4])));
+		case InsertarLinea:
+			muestroRetorno(insertarLinea(a,parametro[2],parametro[3],atoi(parametro[4])));
 			break;
-		case mostrarTexto:
-			muestroRetorno(MostrarTexto(a,parametro[2]));
+		case MostrarTexto:
+			muestroRetorno(mostrarTexto(a,parametro[2]));
 		    break;
-		case borrarLinea:
-			muestroRetorno(BorrarLinea(a,parametro[2],atoi(parametro[3])));
+		case BorrarLinea:
+			muestroRetorno(borrarLinea(a,parametro[2],atoi(parametro[3])));
 			break;
-		case crearVersion:
-			muestroRetorno(CrearVersion(a,parametro[2]));
+		case CrearVersion:
+			muestroRetorno(crearVersion(a,parametro[2]));
 			break;
-		case mostrarVersiones:
-			muestroRetorno(MostrarVersiones(a));
+		case MostrarVersiones:
+			muestroRetorno(mostrarVersiones(a));
 			break;
-		case borrarVersion:
-			muestroRetorno(BorrarVersion(a,parametro[2]));
+		case BorrarVersion:
+			muestroRetorno(borrarVersion(a,parametro[2]));
 			break;
-		case mostrarCambios:
-			muestroRetorno(MostrarCambios(a, parametro[2]));
+		case MostrarCambios:
+			muestroRetorno(mostrarCambios(a, parametro[2]));
 			break;
-		case versionIndependiente:
-			muestroRetorno(VersionIndependiente(a, parametro[2]));
+		case VersionIndependiente:
+			muestroRetorno(versionIndependiente(a, parametro[2]));
 			break;
 //		case iguales:
 //			muestroRetorno(Iguales(a, parametro[2],parametro[3],))

@@ -1,6 +1,3 @@
-#ifndef ESTRUCTURAS_H
-#define ESTRUCTURAS_H
-#define P 5
 #define T 256
 typedef char *cadena;
 
@@ -24,7 +21,7 @@ typedef struct _archivo {
 } *Archivo;
 
 typedef enum _opcion{
-	crearVersion, mostrarVersiones, insertarLinea, borrarLinea, mostrarCambios, borrarVersion, mostrarTexto, versionIndependiente, ayuda, error, salir, limpiar
+	CrearVersion, MostrarVersiones, InsertarLinea, BorrarLinea, MostrarCambios, BorrarVersion, MostrarTexto, VersionIndependiente, ayuda, error, salir, limpiar
 }opciones;
 
 

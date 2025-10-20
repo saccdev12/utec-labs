@@ -1,9 +1,8 @@
 #include<iostream>
 #include<stdio_ext.h>
-#include <string.h>
-
 using namespace std;
 #include "estructuras.h"
+#include "string.h"
 
 
 Archivo CrearArchivo(cadena nombre){

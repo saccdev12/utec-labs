@@ -7,17 +7,18 @@ void help();
 
 Archivo CrearArchivo(cadena nombre);
 TipoRet BorrarArchivo(Archivo &a);
-TipoRet CrearVersion(Archivo &a, cadena version);
-TipoRet BorrarVersion(Archivo &a, cadena version);
-TipoRet MostrarVersiones(Archivo a);
-TipoRet InsertarLinea(Archivo &a, cadena version, cadena linea, unsigned int nroLinea);
-TipoRet BorrarLinea(Archivo &a, cadena version, unsigned int nroLinea);
-TipoRet MostrarTexto(Archivo a, cadena version);
-TipoRet MostrarCambios(Archivo a, cadena version);
-TipoRet Iguales(Archivo a, cadena version1, cadena version2, bool &iguales);
-TipoRet VersionIndependiente(Archivo &a, cadena version);
+TipoRet crearVersion(Archivo &a, cadena version);
+TipoRet borrarVersion(Archivo &a, cadena version);
+TipoRet mostrarVersiones(Archivo a);
+TipoRet insertarLinea(Archivo &a, cadena version, cadena linea, unsigned int nroLinea);
+TipoRet borrarLinea(Archivo &a, cadena version, unsigned int nroLinea);
+TipoRet mostrarTexto(Archivo a, cadena version);
+TipoRet mostrarCambios(Archivo a, cadena version);
+TipoRet iguales(Archivo a, cadena version1, cadena version2, bool &iguales);
+TipoRet versionIndependiente(Archivo &a, cadena version);
 
 Version existencia_Version(Version v,cadena id);
 Archivo eliminarInfoArchivo(Archivo a);
 
 #endif
+

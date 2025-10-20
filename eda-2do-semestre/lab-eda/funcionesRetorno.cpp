@@ -1,11 +1,9 @@
 #include<iostream>
 #include<stdio_ext.h>
-#include <string.h>
-
 using namespace std;
 #include "estructuras.h"
+#include "string.h"
 #include"prototipos.h"
-
 void muestroRetorno(TipoRet retorno){
 	switch (retorno){
 	case OK:
@@ -21,24 +19,24 @@ void muestroRetorno(TipoRet retorno){
 }
 	
 void help(){
-	cout<<"insertarLinea(nombre_archivo,\"version\",\"argumento\",linea)"<<endl<<"mostrarTexto(Nombre_archivo,\"version\")"<<endl;
-	cout<<"borrarLinea(Nombre_archivo,\"version\",\"linea\")"<<"mostrarCambios()"<<endl;
-	cout<<"crearVersion(Nombre_archivo,\"version\")"<<endl<<"mostrarVersiones(nombre_archivo)"<<endl<<"borrarVersion(Nombre_archivo,\"version\")"<<endl;
-	cout<<"versionIndependiente(Nombre_archivo,\"version\")"<<endl<<"ayuda, salir, limpiar"<<endl;
+	cout<<"InsertarLinea(nombre_archivo,\"version\",\"argumento\",linea)"<<endl<<"MostrarTexto(Nombre_archivo,\"version\")"<<endl;
+	cout<<"BorrarLinea(Nombre_archivo,\"version\",\"linea\")"<<"mostrarCambios()"<<endl;
+	cout<<"CrearVersion(Nombre_archivo,\"version\")"<<endl<<"MostrarVersiones(nombre_archivo)"<<endl<<"BorrarVersion(Nombre_archivo,\"version\")"<<endl;
+	cout<<"VersionIndependiente(Nombre_archivo,\"version\")"<<endl<<"ayuda, salir, limpiar"<<endl;
 }
 	
 
-TipoRet CrearVersion(Archivo &a, cadena version){
+TipoRet crearVersion(Archivo &a, cadena version){
 	return NO_IMPLEMENTADO;
 }
-TipoRet BorrarVersion(Archivo &a, cadena version){
+TipoRet borrarVersion(Archivo &a, cadena version){
 	return NO_IMPLEMENTADO;
 }
-TipoRet MostrarVersiones(Archivo a){
+TipoRet mostrarVersiones(Archivo a){
 	return NO_IMPLEMENTADO;
 }
 	
-TipoRet InsertarLinea(Archivo &a,cadena version, cadena linea,unsigned int nroLinea){
+TipoRet insertarLinea(Archivo &a,cadena version, cadena linea,unsigned int nroLinea){
 	
 	if (a == NULL || version == NULL || linea == NULL){
 		return ERROR;
@@ -94,7 +92,7 @@ TipoRet InsertarLinea(Archivo &a,cadena version, cadena linea,unsigned int nroLi
 	return OK;
 	
 }
-TipoRet BorrarLinea(Archivo &a, cadena version, unsigned int nroLinea){
+TipoRet borrarLinea(Archivo &a, cadena version, unsigned int nroLinea){
 	// Verificaciones iniciales
 	if (a == NULL || version == NULL) {
 		return ERROR;
@@ -165,7 +163,7 @@ TipoRet BorrarLinea(Archivo &a, cadena version, unsigned int nroLinea){
 	
 
 
-TipoRet MostrarTexto(Archivo a, cadena version){
+TipoRet mostrarTexto(Archivo a, cadena version){
 	if(a==NULL){
 		
 		return ERROR;
@@ -189,7 +187,7 @@ TipoRet MostrarTexto(Archivo a, cadena version){
 	return OK;
 }
 	
-TipoRet MostrarCambios(Archivo a, cadena version){
+TipoRet mostrarCambios(Archivo a, cadena version){
 	return NO_IMPLEMENTADO;
 }
 
@@ -199,6 +197,7 @@ TipoRet BorrarArchivo(Archivo &a){
 	return OK;
 }
 
-TipoRet VersionIndependiente(Archivo &a, cadena version){
+TipoRet versionIndependiente(Archivo &a, cadena version){
 	return NO_IMPLEMENTADO;
 }
+
