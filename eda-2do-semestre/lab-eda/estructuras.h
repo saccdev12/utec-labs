@@ -1,3 +1,6 @@
+#ifndef ESTRUCTURAS_H
+#define ESTRUCTURAS_H
+#define P 5
 #define T 256
 typedef char *cadena;
 

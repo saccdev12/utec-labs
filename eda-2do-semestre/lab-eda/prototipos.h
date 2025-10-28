@@ -20,5 +20,12 @@ TipoRet versionIndependiente(Archivo &a, cadena version);
 Version existencia_Version(Version v,cadena id);
 Archivo eliminarInfoArchivo(Archivo a);
 
-#endif
+void borrarLinea_Recursivo(lineas &a);
+void borrarVersion_Recursivo(Version &a);
 
+
+void liberarLineas(lineas &l);
+void liberarVersion(Version &v);
+Version encontrarPadre(Version v, cadena idHijo);
+
+#endif
