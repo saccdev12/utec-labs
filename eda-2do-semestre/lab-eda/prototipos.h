@@ -23,7 +23,8 @@ Archivo eliminarInfoArchivo(Archivo a);
 void borrarLinea_Recursivo(lineas &a);
 void borrarVersion_Recursivo(Version &a);
 
-
+void itoa_simple(int n, char res[]);
+void mostrarArbol(Version a,int espacio);
 void liberarLineas(lineas &l);
 void liberarVersion(Version &v);
 Version encontrarPadre(Version v, cadena idHijo);

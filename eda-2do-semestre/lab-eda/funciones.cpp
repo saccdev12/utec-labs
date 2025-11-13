@@ -3,25 +3,24 @@
 using namespace std;
 #include "estructuras.h"
 #include "string.h"
-
+#include<iomanip>
 
 Archivo CrearArchivo(cadena nombre){
   Archivo a = new _archivo;
   a->nombre = nombre;
-  Version nuevo = new _version;
-  strcpy(nuevo->idVersion, "1");
-  a->primeraVersion = nuevo;
+//  Version nuevo = new _version;
+//  strcpy(nuevo->idVersion, "1");
+  /*a->primeraVersion = nuevo;*/
   return a;
 }
 
-  
-  
+
 Version existencia_Version(Version v,cadena id){
 	
 	if (v == nullptr)
 		return nullptr;
 	
-	// Caso base: encontramos la versión
+	// Caso base: encontramos la versi�n
 	if (strcmp(v->idVersion,id) == 0)
 		return v;
 	
@@ -30,7 +29,7 @@ Version existencia_Version(Version v,cadena id){
 	if (encontrada != nullptr)
 		return encontrada;
 	
-	// Si no está en los hijos, buscar en los hermanos
+	// Si no est� en los hijos, buscar en los hermanos
 	return existencia_Version(v->sigHermano, id);
 }
 
@@ -73,7 +72,7 @@ void liberarLineas(lineas &l) {
 	lineas siguiente;
 	while (actual != NULL) {
 		siguiente = actual->sig;
-		// Liberar la cadena de texto de la línea
+		// Liberar la cadena de texto de la l�nea
 		if (actual->textoLinea != NULL) {
 			delete[] actual->textoLinea;
 		}
@@ -81,16 +80,16 @@ void liberarLineas(lineas &l) {
 		delete actual; 
 		actual = siguiente;
 	}
-	l = NULL; // La lista queda vacía
+	l = NULL; // La lista queda vac�a
 }
 	
-	// Función auxiliar para liberar una única versión (incluyendo su texto)
+	// Funci�n auxiliar para liberar una �nica versi�n (incluyendo su texto)
 void liberarVersion(Version &v) {
 	if (v != NULL) {
-		// 1. Liberar todas las líneas de texto
+		// 1. Liberar todas las l�neas de texto
 		liberarLineas(v->textoVersion);
 		
-		// 2. Liberar el idVersion (si tu _version tiene un destructor, esto es automático)
+		// 2. Liberar el idVersion (si tu _version tiene un destructor, esto es autom�tico)
 		if (v->idVersion != NULL) {
 			delete[] v->idVersion;
 		}
@@ -101,11 +100,11 @@ void liberarVersion(Version &v) {
 	}
 }
 	
-	// Función auxiliar para encontrar el padre de una versión (útil para desenlazar)
+	// Funci�n auxiliar para encontrar el padre de una versi�n (�til para desenlazar)
 Version encontrarPadre(Version v, cadena idHijo) {
 	if (v == NULL) return NULL;
 	
-	// El padre está en la misma rama (primerHijo o sigHermano)
+	// El padre est� en la misma rama (primerHijo o sigHermano)
 	Version temp = v->primerHijo;
 	Version padre = NULL;
 	
@@ -120,7 +119,52 @@ Version encontrarPadre(Version v, cadena idHijo) {
 		temp = temp->sigHermano;
 	}
 	
-	// Si no está en los hijos directos, buscar en hermanos del nodo actual
+	// Si no est� en los hijos directos, buscar en hermanos del nodo actual
 	return encontrarPadre(v->sigHermano, idHijo);
 }
 
+
+void mostrarArbol(Version a,int espacio){
+	if (a != nullptr){
+		cout << setw(espacio) << a->idVersion << endl;
+		espacio = espacio + 5;
+		mostrarArbol(a->primerHijo,espacio);
+		espacio = espacio - 5;
+		mostrarArbol(a->sigHermano,espacio);
+	}
+	return;
+	
+	
+}
+	
+	
+void itoa_simple(int n, char res[]) {
+	// Caso especial para 0
+	if (n == 0) {
+		res[0] = '0';
+		res[1] = '\0';
+		return;
+	}
+	
+	int i = 0;
+	
+	// Convertir d�gitos a caracteres en orden inverso
+	while (n != 0) {
+		res[i++] = n % 10 + '0';
+		n = n / 10;
+	}
+	res[i] = '\0'; // Terminador nulo
+	
+	// Invertir la cadena para obtener el orden correcto
+	int start = 0;
+	int end = strlen(res) - 1;
+	char temp;
+	
+	while (start < end) {
+		temp = res[start];
+		res[start] = res[end];
+		res[end] = temp;
+		start++;
+		end--;
+	}
+}

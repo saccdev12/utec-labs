@@ -33,7 +33,7 @@ int main (int argc, char *argv[]) {
 	__fpurge(stdin);
 	opciones opcion;
 	__fpurge(stdin);
-	while(strcmp(parametro[0],"Salir")!= 0){
+	while(strcmp(parametro[0],"salir")!= 0){
 		__fpurge(stdin);
 		opcion = error;
 		__fpurge(stdin);
