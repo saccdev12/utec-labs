@@ -15,4 +15,4 @@ class Usina {
 };
 
 
-#endif //UNTITLED_USINA_H
+#endif

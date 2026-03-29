@@ -12,5 +12,4 @@ class TurbinaEspecial: public Turbina {
 
 };
 
-
-#endif //UNTITLED_TURBINAESPECIAL_H
+#endif
