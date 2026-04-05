@@ -1,6 +1,8 @@
 #include "Publicacion.h"
 #include "Investigador.h"
 
+using namespace std;
+
 // Constructor vacío para evitar basura en memoria, siempre tiene una publicación válida.
 Publicacion::Publicacion() {}
 
@@ -12,10 +14,10 @@ Publicacion::Publicacion(std::string DOI, std::string titulo, DTFecha fecha)
 Publicacion::~Publicacion() {}    
 
 //Definimos los Getters.
-std::string Publicacion::getDOI() const {
+string Publicacion::getDOI() const {
     return DOI;
 }
-std::string Publicacion::getTitulo() const {
+string Publicacion::getTitulo() const {
     return titulo;
 }
 DTFecha Publicacion::getFecha() const {
@@ -28,7 +30,7 @@ void Publicacion::agregarAutor(Investigador* autor) {
 }
 
 DTRefer Publicacion::getDT() const {
-    std::set<std::string> nombresAutores; // Creamos un set de strings para guardar SOLO los nombres de los autores (no los objetos Investigador completos).
+   set<string> nombresAutores; // Creamos un set de strings para guardar SOLO los nombres de los autores (no los objetos Investigador completos).
 
     for (auto it = autores.begin(); it != autores.end(); ++it) { //Recorremos el conjunto de autores mediante un for (que son punteros a Investigador)
 

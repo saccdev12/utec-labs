@@ -12,6 +12,7 @@ class DTRefer {
         string DOI;
         string titulo;
         set<std::string> autores; //los autores NO son objetos, son strings.
+        DTFecha fecha; //la fecha es un objeto, por eso la importamos.
 
     public:
        DTRefer();
@@ -24,7 +25,7 @@ class DTRefer {
        set<std::string> getAutores() const;
         
        //Sobrecarga del operador, accede a atributos que son privados, lo usamos para imprimir el objeto.
-       friend std::ostream& operator<<(std::ostream& os, const DTRefer& referencia);
+       friend ostream& operator<<(ostream& os, const DTRefer& referencia);
 
 };
 
