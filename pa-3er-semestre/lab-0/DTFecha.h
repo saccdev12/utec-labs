@@ -2,6 +2,7 @@
 #define DTFECHA_H
 
 #include <iostream>
+using namespace std;
 
 class DTFecha {
     private:
@@ -19,7 +20,7 @@ class DTFecha {
         int getAnio() const;
 
         //Sobrecarga del operador de inserción, muy importante chicos, lo usamos para hacer cosas cómo imprimir la fecha, ya que accede a atributos privados.
-        friend std::ostream& operator<<(std::ostream& os, const DTFecha& fecha);
+        friend ostream& operator<<(ostream& os, const DTFecha& fecha);
 };
 
 #endif // DTFECHA_H

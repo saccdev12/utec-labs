@@ -1,4 +1,3 @@
-// Created by Facundo Caraballo Beledo on 3/4/26.
 #ifndef LAB_PA0_INVESTIGADOR_H
 #define LAB_PA0_INVESTIGADOR_H
 #include <string>
@@ -37,6 +36,5 @@ public:
 
 
 };
-
 
 #endif //LAB_PA0_INVESTIGADOR_H

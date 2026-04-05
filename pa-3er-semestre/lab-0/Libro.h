@@ -1,4 +1,3 @@
-
 #ifndef UNTITLED_LIBRO_H
 #define UNTITLED_LIBRO_H
 #include "Publicacion.h"

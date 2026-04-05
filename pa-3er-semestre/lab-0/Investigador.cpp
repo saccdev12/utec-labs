@@ -1,6 +1,3 @@
-//
-// Created by Facundo Caraballo Beledo on 3/4/26.
-//
 #include "Investigador.h"
 #include "Publicacion.h"
 #include <iostream>

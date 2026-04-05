@@ -2,11 +2,13 @@
 #include <iostream>
 #include <iterator>
 
+using namespace std;
+
 // constructor vacío para evitar basura en memoria, siempre tiene referencia válida.
 DTRefer::DTRefer() {}
 
 //constructor completo, para insertar valores al objeto.
-DTRefer::DTRefer(std::string DOI, std::string titulo, DTFecha fecha, std::set<std::string> autores){
+DTRefer::DTRefer(string DOI, string titulo, DTFecha fecha, set<string> autores){
     this->DOI = DOI;
     this->titulo = titulo;
     this->fecha = fecha;
@@ -15,11 +17,11 @@ DTRefer::DTRefer(std::string DOI, std::string titulo, DTFecha fecha, std::set<st
 
 // Definimos los Getters.
 
-std::string DTRefer::getDOI() const {
+string DTRefer::getDOI() const {
     return DOI;
 }
 
-std::string DTRefer::getTitulo() const {
+string DTRefer::getTitulo() const {
     return titulo;
 }
 
@@ -27,7 +29,7 @@ DTFecha DTRefer::getFecha() const {
     return fecha;
 }
 
-std::set<std::string> DTRefer::getAutores() const {
+set<string> DTRefer::getAutores() const {
     return autores;
 }
 

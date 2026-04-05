@@ -1,4 +1,5 @@
 #include "DTFecha.h"
+using namespace std;
 
 // constructor x defecto para evitar basura en memoria, siempre tiene fecha válida.
 DTFecha::DTFecha(){
@@ -30,7 +31,7 @@ int DTFecha::getAnio() const{
 }
 
 // sobrecarga del operador para imprimir el objeto como si fuera un string o int.
-std::ostream& operator<<(std::ostream& salida, const DTFecha& fecha){
+ostream& operator<<(ostream& salida, const DTFecha& fecha){
     salida << fecha.dia << "/" << fecha.mes << "/" << fecha.anio;
     return salida;
 }

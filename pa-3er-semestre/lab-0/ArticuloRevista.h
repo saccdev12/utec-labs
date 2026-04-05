@@ -4,6 +4,7 @@
 #include "Publicacion.h"
 #include <string>
 using namespace std;
+
 class ArticuloRevista : public Publicacion{
     private:
         string revista;
@@ -13,6 +14,5 @@ class ArticuloRevista : public Publicacion{
         bool contienePalabra(string palabra) override;
     ArticuloRevista(string doi, string titulo, DTFecha fecha, string revista);
 };
-
 
 #endif //UNTITLED_ARTICULOREVISTA_H
