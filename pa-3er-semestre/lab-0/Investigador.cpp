@@ -62,3 +62,7 @@ void Investigador::removerPublicacion(Publicacion* p) {
 string Investigador::getNombre() const {
     return this->nombre;
 }
+
+string Investigador::getORCID() const {
+    return this->ORCID;
+}
