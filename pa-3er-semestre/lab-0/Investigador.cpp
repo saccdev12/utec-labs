@@ -12,6 +12,9 @@ Investigador::Investigador(string orcid, string nom, string inst) {
 }
 
 Investigador::~Investigador() {
+    for (auto publicacion : this->publicaciones) {
+        publicacion->removerInvestigador(this);
+    }
     cout<<"El investigador ha sido destruido"<<endl;
 }
 
@@ -26,7 +29,7 @@ set<string> Investigador::listarPublicaciones(DTFecha desde, string palabra) {
         DTFecha fechaPub = p->getFecha();
         bool esPosterior = false;
 
-        // Comparo: Año, Mes, Día
+        // Comparo: Año, Mes, Día   Correguir y  Modularizar
         if (fechaPub.getAnio() > desde.getAnio()) {
             esPosterior = true;
         } else if (fechaPub.getAnio() == desde.getAnio()) {

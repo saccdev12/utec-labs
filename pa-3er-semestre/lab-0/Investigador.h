@@ -18,7 +18,7 @@ private:
     list<Publicacion*> publicaciones;
 
 public:
-    // Constructory Destructor
+    // Constructor y Destructor
     Investigador(string orcid, string nom, string inst);
     ~Investigador();
 
@@ -36,5 +36,6 @@ public:
 
 
 };
+
 
 #endif //LAB_PA0_INVESTIGADOR_H

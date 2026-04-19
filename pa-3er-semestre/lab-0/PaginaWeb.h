@@ -2,9 +2,7 @@
 #define UNTITLED_PAGINAWEB_H
 #include "Publicacion.h"
 #include <string>
-
 using namespace std;
-
 class PaginaWeb : public Publicacion{
     private:
         string url;
@@ -12,7 +10,8 @@ class PaginaWeb : public Publicacion{
     public:
         PaginaWeb();
         bool contienePalabra(string palabra) override;
-    PaginaWeb(string doi, string titulo, DTFecha fecha, string url);
+    PaginaWeb(string doi, string titulo, DTFecha fecha, string Url, string ContenidoExtraido);
 };
+
 
 #endif //UNTITLED_PAGINAWEB_H

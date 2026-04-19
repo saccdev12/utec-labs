@@ -3,6 +3,8 @@
 #include "Publicacion.h"
 #include <set>
 #include <string>
+
+
 using namespace std;
 
 class Libro : public Publicacion{
@@ -12,7 +14,7 @@ class Libro : public Publicacion{
     public:
         Libro();
         bool contienePalabra(string palabra) override;
-    Libro(string doi, string titulo, DTFecha fecha, string editorial);
+    Libro(string doi, string titulo, DTFecha fecha, string editorial, set<string> palabrasDestacadas);
 };
 
 
