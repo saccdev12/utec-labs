@@ -22,7 +22,7 @@ public:
     virtual set<DTCliente*> agendarVisita() = 0;
     virtual void seleccionCliente(int idCliente, Date fecha, string formaContacto) = 0;
 
-    // Espacio reservado para tu compañero (Alta Inmueble y Representar Propietario)
+    // Espacio reservado para Facundo (Alta Inmueble y Representar Propietario)
     virtual ~ISistema() {}
 };
 #endif
