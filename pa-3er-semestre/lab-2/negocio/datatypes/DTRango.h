@@ -1,1 +1,0 @@
-enum DTRango { Maximo, Minimo };
