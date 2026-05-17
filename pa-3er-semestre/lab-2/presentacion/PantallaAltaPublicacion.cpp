@@ -7,17 +7,17 @@ void pantallaAltaPublicacion(ISistema* sys) {
     std::cout << "\n--- ALTA DE PUBLICACION ---\n";
 
     // Obtenemos y mostramos las inmobiliarias disponibles
-    set<DTInmobiliaria*> inmos = sys->obtenerInmobiliarias();
+    std::set<DTInmobiliaria*> inmos = sys->obtenerInmobiliarias();
     for (auto i : inmos) {
         std::cout << "Nickname: " << i->getNickname() << " | Nombre: " << i->getNombre() << "\n";
     }
 
     std::cout << "Ingrese el nickname de la inmobiliaria: ";
-    string nick;
+    std::string nick;
     std::cin >> nick;
 
     // Seleccionamos inmobiliarias y mostramos sus inmuebles
-    set<DTInmueble*> inmuebles = sys->seleccionInmobiliariaParaPublicar(nick);
+    std::set<DTInmueble*> inmuebles = sys->seleccionInmobiliariaParaPublicar(nick);
     if (inmuebles.empty()) {
         std::cout << "No hay inmuebles administrados por esta inmobiliaria.\n";
         return;
@@ -30,12 +30,12 @@ void pantallaAltaPublicacion(ISistema* sys) {
     // 3. Generar Publicacion
     int codInmueble;
     float precio;
-    string texto;
+    std::string texto;
     std::cout << "Ingrese codigo del inmueble: ";
     std::cin >> codInmueble;
     std::cout << "Ingrese texto de la publicacion: ";
     std::cin.ignore();
-    getline(std::cin, texto);
+    std::getline(std::cin, texto);
     std::cout << "Ingrese precio: ";
     std::cin >> precio;
 

@@ -1,5 +1,7 @@
 #include "PantallaConsultarPublicaciones.h"
 #include <iostream>
+#include <set>
+#include <string>
 #include <vector>
 
 void pantallaConsultarPublicaciones(ISistema* sys) {
@@ -9,7 +11,13 @@ void pantallaConsultarPublicaciones(ISistema* sys) {
     std::cout << "Listando todas las publicaciones activas...\n";
     
     // Obtenemos publicaciones 
-    set<DTListaPublicacion*> lista = sys->obtenerPublicaciones(nullptr, Minimo, Ambas);
+   // Suponiendo que preguntamos antes:
+   std::cout << "Tipo de publicación (0: Venta, 1: Alquiler): ";
+   int opcTipo;
+   std::cin >> opcTipo;
+   DTTipoPublicacion tipo = (opcTipo == 0) ? DTTipoPublicacion::Venta : DTTipoPublicacion::Alquiler;
+
+    std::set<DTListaPublicacion*> lista = sys->obtenerPublicaciones(tipo, Minimo, Ambas);
     
     for (auto p : lista) {
         std::cout << "[" << p->getCodigo() << "] " << p->getTexto() 
@@ -35,20 +43,21 @@ void pantallaConsultarPublicaciones(ISistema* sys) {
         std::cin >> deseaAgendar;
 
         if (deseaAgendar == 's') {
-            set<DTCliente*> clientes = sys->agendarVisita();
+            std::set<DTCliente*> clientes = sys->obtenerClientes();
             for (auto c : clientes) {
                 std::cout << "ID: " << c->getIdCliente() << " | " << c->getNombre() << " " << c->getApellido() << "\n";
             }
 
             int idC;
-            string contacto;
+            std::string contacto;
             std::cout << "Seleccione ID de cliente: ";
             std::cin >> idC;
             std::cout << "Forma de contacto: ";
             std::cin >> contacto;
 
-            sys->seleccionCliente(idC, {12, 5, 2026}, contacto);
+           // Usamos el código de publicación que ya tenemos (codP)
+           sys->agendarVisita(idC, {12, 5, 2026}, contacto, codP);  // ← nuevo nombre y parámetro extra
             std::cout << "Visita agendada correctamente.\n";
-        }
+           }
     }
 }

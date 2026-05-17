@@ -3,6 +3,7 @@
 #define LAB_2_PROPIETARIO_H
 
 #include <string>
+#include <map>
 #include "Inmueble.h"
 using namespace std;
 

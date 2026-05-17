@@ -5,6 +5,9 @@
 #include "Propietario.h"
 #include "DTCasa.h"
 #include "DTApartamento.h"
+#include "DTInmuebleDetalles.h"
+#include <map>
+#include <stdexcept>
 
 Sistema* Sistema::instancia = nullptr;
 Sistema::Sistema() {}
@@ -14,8 +17,8 @@ Sistema* Sistema::getInstancia() {
 }
 
 // 1. Obtener Inmobiliarias (¡Reutilizada para ambos casos de uso!)
-set<DTInmobiliaria*> Sistema::obtenerInmobiliarias() {
-    set<DTInmobiliaria*> res;
+std::set<DTInmobiliaria*> Sistema::obtenerInmobiliarias() {
+    std::set<DTInmobiliaria*> res;
     for (auto it = inmobiliarias.begin(); it != inmobiliarias.end(); ++it) {
         Inmobiliaria* inmo = it->second;
         res.insert(new DTInmobiliaria(inmo->getNickname(), inmo->getNombre()));
@@ -24,10 +27,10 @@ set<DTInmobiliaria*> Sistema::obtenerInmobiliarias() {
 }
 
 // 2. Seleccionar Inmobiliaria y mostrar dueños NO asociados
-set<DTPropietario*> Sistema::seleccionInmobiliariaParaRepresentar(string nickname) {
+std::set<DTPropietario*> Sistema::seleccionInmobiliariaParaRepresentar(const std::string& nickname) {
     this->inmobiliariaRecordada = this->inmobiliarias[nickname];
 
-    set<DTPropietario*> res;
+    std::set<DTPropietario*> res;
     for (auto it = propietarios.begin(); it != propietarios.end(); ++it) {
         Propietario* prop = it->second;
 
@@ -39,18 +42,18 @@ set<DTPropietario*> Sistema::seleccionInmobiliariaParaRepresentar(string nicknam
 }
 
 // 3. Vincular y retornar la lista actualizada
-set<DTPropietario*> Sistema::seleccionARepresentar(string nickname) {
+std::set<DTPropietario*> Sistema::seleccionARepresentar(const std::string& nickname) {
     Propietario* prop = this->propietarios[nickname];
     this->inmobiliariaRecordada->agregarPropietario(prop);
     return this->seleccionInmobiliariaParaRepresentar(this->inmobiliariaRecordada->getNickname());
 }
 
-void Sistema::generarPublicacion(string nickInmo, int codInmueble, DTPublicacion* datos) {
+void Sistema::generarPublicacion(const std::string& nickInmo, int codInmueble, DTPublicacion* datos) {
     // Post-condición: se crea la instancia publicacion
 }
 
-set<DTListaPublicacion*> Sistema::obtenerPublicaciones(DTPublicacion* tipo, DTRango rango, DTInteres interes) {
-    set<DTListaPublicacion*> res;
+std::set<DTListaPublicacion*> Sistema::obtenerPublicaciones(DTTipoPublicacion tipo, DTRango rango, DTInteres interes) {
+    std::set<DTListaPublicacion*> res;
     res.insert(new DTListaPublicacion(50, {12, 5, 2026}, "Oferta", 1500, "inmo_1"));
     return res;
 }
@@ -59,18 +62,19 @@ DTInmueble* Sistema::seleccionPublicacion(int codPublicacion) {
     return new DTInmueble(101, "Calle Falsa 123", {1, 1, 2026});
 }
 
-set<DTCliente*> Sistema::agendarVisita() {
-    set<DTCliente*> res;
+std::set<DTCliente*> Sistema::obtenerClientes() {
+    std::set<DTCliente*> res;
     res.insert(new DTCliente("Juan", "Perez", 1));
     return res;
 }
 
-void Sistema::seleccionCliente(int idCliente, Date fecha, string formaContacto) {
-    // Post-condición: Se crea la instancia Agenda
+void Sistema::agendarVisita(int idCliente, Date fecha, const std::string& formaContacto, int codPublicacion) {
+    // Post-condición: Se crea la instancia Agenda con los datos recibidos
+    // (puedes usar codPublicacion para asociar la visita a la publicación)
 }
 
-set<DTPropietario*> Sistema::ObtenerPropietarios() {
-    set<DTPropietario*> res;
+std::set<DTPropietario*> Sistema::ObtenerPropietarios() {
+    std::set<DTPropietario*> res;
     for (auto it = propietarios.begin(); it != propietarios.end(); it++) {
         Propietario* p = it->second;
         DTPropietario* dt = new DTPropietario(p->getNickname(), p->getNombre(), p->getEmail());
@@ -79,9 +83,9 @@ set<DTPropietario*> Sistema::ObtenerPropietarios() {
     return res;
 }
 
-void Sistema::IngresarDatosInmueble(string nickname, DTInmuebleDetalles* datos) {
+void Sistema::IngresarDatosInmueble(const std::string& nickname, DTInmuebleDetalles* datos) {
     if (this->propietarios.count(nickname) == 0) {
-        throw invalid_argument("Error: No existe un propietario con ese nickname en el sistema.");
+        throw std::invalid_argument("Error: No existe un propietario con ese nickname en el sistema.");
     }
     Propietario* prop = this->propietarios[nickname];
     int id = this->proximoIdInmueble;
@@ -104,8 +108,8 @@ void Sistema::IngresarDatosInmueble(string nickname, DTInmuebleDetalles* datos) 
 }
 
 // Implementación temporal para el caso de uso: Alta Publicación
-set<DTInmueble*> Sistema::seleccionInmobiliariaParaPublicar(string nickname) {
-    set<DTInmueble*> res;
+std::set<DTInmueble*> Sistema::seleccionInmobiliariaParaPublicar(const std::string& nickname) {
+    std::set<DTInmueble*> res;
 
     return res;
 }

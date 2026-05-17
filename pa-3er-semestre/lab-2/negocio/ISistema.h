@@ -1,6 +1,7 @@
 #ifndef ISISTEMA_H
 #define ISISTEMA_H
 #include <set>
+#include <string>
 #include "datatypes/DTInmobiliaria.h"
 #include "datatypes/DTInmueble.h"
 #include "datatypes/DTPublicacion.h"
@@ -13,29 +14,29 @@
 #include "datatypes/DTCasa.h"
 #include "datatypes/DTApartamento.h"
 #include "datatypes/DTInmobiliariaDetalles.h"
+#include "datatypes/DTTipoPublicacion.h"
 
 
 class ISistema {
 public:
     //Alta Inmueble
-    virtual set<DTPropietario*> ObtenerPropietarios() = 0;
-    virtual void IngresarDatosInmueble(string nickname, DTInmuebleDetalles* datos)= 0;
+    virtual std::set<DTPropietario*> ObtenerPropietarios() = 0;
+    virtual void IngresarDatosInmueble(const std::string& nickname, DTInmuebleDetalles* datos)= 0;
 
     //Representar Propietario
-    virtual set<DTInmobiliaria*> obtenerInmobiliarias() = 0;
-    virtual set<DTPropietario*> seleccionInmobiliariaParaRepresentar(string nickname) = 0;
-    virtual set<DTPropietario*> seleccionARepresentar(string nickname) = 0;
+    virtual std::set<DTInmobiliaria*> obtenerInmobiliarias() = 0;
+    virtual std::set<DTPropietario*> seleccionInmobiliariaParaRepresentar(const std::string& nickname) = 0;
+    virtual std::set<DTPropietario*> seleccionARepresentar(const std::string& nickname) = 0;
 
     // Alta Publicación
-    virtual set<DTInmueble*> seleccionInmobiliariaParaPublicar(string nickname) = 0;
-    virtual void generarPublicacion(string nickInmo, int codInmueble, DTPublicacion* datos) = 0;
+    virtual std::set<DTInmueble*> seleccionInmobiliariaParaPublicar(const std::string& nickname) = 0;
+    virtual void generarPublicacion(const std::string& nickInmo, int codInmueble, DTPublicacion* datos) = 0;
 
     //ConsultarPublicacion
-    virtual set<DTListaPublicacion*> obtenerPublicaciones(DTPublicacion* tipo, DTRango rango, DTInteres interes) = 0;
+    virtual std::set<DTListaPublicacion*> obtenerPublicaciones(DTTipoPublicacion tipo, DTRango rango, DTInteres interes) = 0;
     virtual DTInmueble* seleccionPublicacion(int codPublicacion) = 0;
-    virtual set<DTCliente*> agendarVisita() = 0;
-    virtual void seleccionCliente(int idCliente, Date fecha, string formaContacto) = 0;
-
+    virtual std::set<DTCliente*> obtenerClientes() = 0;
+    virtual void agendarVisita(int idCliente, Date fecha, const std::string& formaContacto, int codPublicacion) = 0;
 
     virtual ~ISistema() {}
 };

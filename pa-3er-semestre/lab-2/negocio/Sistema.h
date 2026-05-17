@@ -5,6 +5,7 @@
 #include <string>
 #include <set>
 #include "datatypes/DTPropietario.h"
+#include "datatypes/DTTipoPublicacion.h"
 #include "Propietario.h"
 
 class Sistema : public ISistema {
@@ -12,34 +13,33 @@ private:
     static Sistema* instancia;
     Sistema();
     int proximoIdInmueble = 1;
-    map<string, Propietario*> propietarios;
-    map<int, Inmueble*> inmuebles;
-    map<string, Inmobiliaria*> inmobiliarias;
+    std::map<std::string, Propietario*> propietarios;
+    std::map<int, Inmueble*> inmuebles;
+    std::map<std::string, Inmobiliaria*> inmobiliarias;
     Inmobiliaria* inmobiliariaRecordada = nullptr;
 
 public:
     static Sistema* getInstancia();
+    void cargarDatosPrueba();
 
      //Alta Inmueble
-    set<DTPropietario*> ObtenerPropietarios();
-    void IngresarDatosInmueble(string nickname, DTInmuebleDetalles* datos);
+    std::set<DTPropietario*> ObtenerPropietarios() override;
+    void IngresarDatosInmueble(const std::string& nickname, DTInmuebleDetalles* datos) override;
 
     //Representar Propietario
-    set<DTInmobiliaria*> obtenerInmobiliarias();
-    set<DTPropietario*> seleccionInmobiliariaParaRepresentar(string nickname);
-    set<DTPropietario*> seleccionARepresentar(string nickname);
+    std::set<DTInmobiliaria*> obtenerInmobiliarias() override;
+    std::set<DTPropietario*> seleccionInmobiliariaParaRepresentar(const std::string& nickname) override;
+    std::set<DTPropietario*> seleccionARepresentar(const std::string& nickname) override;
 
      // Alta Publicación
-    void generarPublicacion(string nickInmo, int codInmueble, DTPublicacion* datos);
-    set<DTInmueble*> seleccionInmobiliariaParaPublicar(string nickname);
+    void generarPublicacion(const std::string& nickInmo, int codInmueble, DTPublicacion* datos) override;
+    std::set<DTInmueble*> seleccionInmobiliariaParaPublicar(const std::string& nickname) override;
 
     //ConsultarPublicacion
-    set<DTListaPublicacion*> obtenerPublicaciones(DTPublicacion* tipo, DTRango rango, DTInteres interes);
-    DTInmueble* seleccionPublicacion(int codPublicacion);
-    set<DTCliente*> agendarVisita();
-    void seleccionCliente(int idCliente, Date fecha, string formaContacto);
-
-    void cargarDatosPrueba();
+    std::set<DTListaPublicacion*> obtenerPublicaciones(DTTipoPublicacion tipo, DTRango rango, DTInteres interes) override;
+    DTInmueble* seleccionPublicacion(int codPublicacion) override;
+    std::set<DTCliente*> obtenerClientes() override;
+    void agendarVisita(int idCliente, Date fecha, const std::string& formaContacto, int codPublicacion) override;
 
 
 };

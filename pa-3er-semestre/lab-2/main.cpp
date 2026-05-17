@@ -4,16 +4,11 @@
 #include "presentacion/PantallaConsultarPublicaciones.h"
 #include "presentacion/PantallaRepresentarPropietario.h"
 #include "presentacion/PantallaAltaInmueble.h"
-#include "Sistema.h"
-
-void PantallaAltaInmueble(ISistema* sys);
-void PantallaRepresentarPropietario(ISistema* sys);
-
 
 int main() {
     // Se obtiene la instancia única del sistema
-    ISistema* sys = Sistema::getInstancia();
-    dynamic_cast<Sistema*>(sys)->cargarDatosPrueba();
+    Sistema* sys = Sistema::getInstancia();
+    sys->cargarDatosPrueba();
     int opcion;
     do {
         std::cout << "\n========================================" << std::endl;
